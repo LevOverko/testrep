@@ -143,5 +143,6 @@ val userResultEmail: String = Await.result(
 )
 
 //3
+def dddd
 //3.1 сздать git аккаунт
 //3.2 решение добавить в Git
