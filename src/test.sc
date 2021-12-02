@@ -1,4 +1,7 @@
 import java.time.Duration
+import scala.Nil
+import scala.collection.immutable.{AbstractSeq, LinearSeq, Nil}
+import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 import scala.collection.mutable.{Map => muMap}
 import scala.concurrent.duration._
@@ -26,12 +29,12 @@ def getUser: Future[Option[User]] = {
   Future(seq1.lift(value))
 }
 
-
-val userResult: String = Await.result(
-  getUser.map{
-    case Some(user) => user.infoOpt.get.emailOpt.getOrElse("Почты не существует")
-    case None => "Юзера не существует"
-  },
-  1.second
-)
+val newSeq1 = seq1.map{
+  user =>{
+    if(user.ageOpt == Some(0))
+    user.copy(ageOpt = Some(5))
+    else
+      user
+  }
+}
 
