@@ -29,4 +29,12 @@ def getUser: Future[Option[User]] = {
   Future(seq1.lift(value))
 }
 
-seq1.foreach(user => print(user.name + ", "))
+val newSeq1 = seq1.map{
+  user =>{
+    if(user.ageOpt == Some(0))
+    user.copy(ageOpt = Some(5))
+    else
+      user
+  }
+}
+
